@@ -82,12 +82,35 @@ const stepThroughCells = (row, column) => {
     // Below = row + 1, column
     // Left = row, column - 1
     const neighbors = shuffle([
-        [row - 1, column],
-        [row, column + 1],
-        [row + 1, column],
-        [row, column - 1]
+        [row - 1, column, 'up'],
+        [row, column + 1, 'right'],
+        [row + 1, column, 'down'],
+        [row, column - 1, 'left']
     ]);
-    console.log(neighbors);
+    
+    for(let neighbor of neighbors) {
+        const [nextRow, nextColumn, direction] = neighbor;
+
+        // See if the neighbor is out of bounds
+        if(nextRow < 0 || nextRow >= cells || nextColumn < 0 || nextColumn >= cells) {
+            continue;
+        }
+        // If we have visited that neighbor continue to the next
+        if(grid[nextRow][nextColumn]) {
+            continue;
+        }
+
+        // Remove a wall from either horizontals and verticals 
+        if(direction === 'left') {
+            verticals[row][column -1] = true;
+        } else if (direction === 'right') {
+            verticals[row][column] = true;
+        } else if(direction === 'up') {
+            horizontals[row - 1][column] = true;
+        } else if (direction === 'down') {
+            horizontals[row][column] = true;
+        }
+    }
 }
 
 stepThroughCells(1, 1);
