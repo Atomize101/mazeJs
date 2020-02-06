@@ -52,7 +52,19 @@ const horizontals = Array(cells -1)
     .fill(null)
     .map(() => Array(cells).fill(false));
 
-console.log(horizontals);
-console.log(verticals);
+const startRow = Math.floor(Math.random() * cells);
+const startColumn = Math.floor(Math.random() * cells);
+
+const stepThroughCells = (row, column) => {
+    if(grid[row][column]) {
+        return;
+    }
+
+    grid[row][column] = true;
+
+}
+
+stepThroughCells(startRow, startColumn);
 console.log(grid);
+
 
