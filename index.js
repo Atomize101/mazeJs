@@ -39,13 +39,9 @@ World.add(world, walls);
 
 // Maze generation
 
-const grid = [];
+const grid = Array(3)
+.fill(null)
+.map(() => Array(3).fill(false));
 
-for(let i = 0; i < 3; i++) {
-    grid.push( [] );
-    for (let j = 0; j < 3; j++) {
-        grid[i].push(false);
-    }
-}
+console.log(grid);
 
-console.log(grid)
